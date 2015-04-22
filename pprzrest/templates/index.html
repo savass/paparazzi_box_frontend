@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+     <title>PPRZ on BeagleBone</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="css/plugins/timeline.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+      .MonError {color:red}
+      .MonOutput {color:green} 
+    </style>
+
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="pull-left" style="margin-left:10px;">
+                   <img src="images/penguin_logo.svg" onerror="this.onerror=null; this.src='images/penguin_logo.png'" alt="pprzWeb" height="42" width="42" >
+                </div>
+          
+                <a class="navbar-brand" href="index.html">PPRZ WebController</a>
+            </div>
+            <!-- /.navbar-header -->
+
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                       
+                        <li>
+                            <a href="/"><i class="fa fa-desktop fa-fw"></i> Main</a>
+                        </li>
+                        <li>
+                            <a href="/trackers"><i class="fa fa-crosshairs fa-fw"></i> Trackers</a>
+                        </li>
+                        <li>
+                            <a href="/system"><i class="fa fa-cogs fa-fw"></i> System</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Agents</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Agents
+                        </div>
+                        <div class="panel-body">
+                        <p>Start/Stop agents</p>
+                            <div class="form-horizontal col-xs-12" >
+                            
+                            <!--<div class="col-sm-12 col-xs-12">-->
+                                <div class="form-group">
+                                    <div class="input-group">
+    
+                                        <span class="input-group-addon" id="basic-addon1">Link&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                        <span id="LinkLabel" class="label-success input-group-addon">n/a</span>   
+                                        <input type="text" class="form-control" id="LinkTextBox" >                                   
+                                        
+                                        <div class="input-group-btn">
+                                           
+                                            <button id="LinkStart" class="btn btn-success">Start</button>
+                                            <button id="LinkStop" class="btn btn-danger">Stop</button>    
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                     
+                                    <div class="input-group">
+
+                                        <span class="input-group-addon" id="ServerTextBox" >Server&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                        <span id="ServerLabel" class="label-success input-group-addon">n/a</span>
+                                        <input type="text" class="form-control" id="ServerTextBox" >
+    
+                                        <div class="input-group-btn">
+                                            <button id="ServerStart" class="btn btn-success">Start</button>
+                                            <button id="ServerStop" class="btn btn-danger" >Stop</button>
+                                        </div>
+    
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+
+                                    <div class="input-group">
+
+                                        <span class="input-group-addon" id="AppServerTextBox" >App Server</span>
+                                        <span id="AppServerLabel" class="label-success input-group-addon">n/a</span>
+                                        <input type="text" class="form-control" id="AppServerTextBox" >
+    
+                                        <div class="input-group-btn">
+                                            <button id="AppServerStart" class="btn btn-success">Start</button>
+                                            <button id="AppServerStop" class="btn btn-danger">Stop</button>
+                                        </div>
+    
+                                    </div>
+                                </div>
+                                   
+                            <!--</div>-->
+                           
+                        </div>
+                            
+                        
+                        </div>
+                        
+                    </div>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->  
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Output
+                        </div>
+                        <div class="panel-body">
+                        
+                        <div id="log"></div>
+                        
+                        </div>
+                        <div class="panel-footer">
+                           
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->  
+
+        
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery Version 1.11.0 -->
+    <script src="js/jquery-1.11.0.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="js/plugins/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/sb-admin-2.js"></script>
+
+    <script type="text/javascript" src="js/socket.io.min.js"></script>
+
+    <script type="text/javascript" charset="utf-8">
+
+    $(document).ready(function() {
+
+    var BaseUri = 'http://' + document.domain + ':' + location.port
+
+    namespace = '/PprzOnWeb'; // change to an empty string to use the global namespace
+
+            // the socket.io documentation recommends sending an explicit package upon connection
+            // this is specially important when using the global namespace
+            var socket = io.connect('http://' + document.domain + ':' + location.port + namespace);
+            socket.on('connect', function() {
+                socket.emit('my event', {data: 'I\'m connected!'});
+            });
+
+            // event handler for server sent data
+            socket.on('StatusMsg', function(msg) {
+                //$('#log').html(msg.data);
+                parse_status_msg(msg);
+            });
+
+    function parse_status_msg(inMsg) {
+       console.log(inMsg);
+       $('#log').html(inMsg.data);
+       //check agent status'
+       change_status($('#LinkLabel'),inMsg.link_sts );
+       change_status($('#ServerLabel'),inMsg.server_sts );
+       change_status($('#AppServerLabel'),inMsg.app_server_sts );
+       $('#LinkTextBox').val(inMsg.link_arg);
+       $('#ServerTextBox').val(inMsg.server_arg);
+       $('#AppServerTextBox').val(inMsg.app_server_arg);
+
+    }
+
+    function change_status(InLabelControl, ContStatus) {
+        if (ContStatus) {
+            InLabelControl.addClass('label-success').removeClass('label-danger');
+            InLabelControl.text('Running');
+        }else{
+            InLabelControl.addClass('label-danger').removeClass('label-success');
+            InLabelControl.text('Stopped');
+        }
+    }
+
+    function start_process(Name, ArgumentStr) {
+        $.ajax({
+            type: "POST",
+            url: BaseUri + "/pprzrest/api/v1.0/run",
+            data: {
+                agent: Name,
+                inputvar: ArgumentStr
+                },
+            success: function(msg){
+                if (msg == "ok") {
+                    //Done;
+                }
+                        
+                }
+            }); // Ajax Call      
+    }
+
+    function stop_process(Name, ArgumentStr) {
+        $.ajax({
+            type: "POST",
+            url: BaseUri + "/pprzrest/api/v1.0/stop",
+            data: {
+                agent: Name,
+                inputvar: ArgumentStr
+                },
+            success: function(msg){
+                if (msg == "ok") {
+                    //Done;
+                }
+                        
+                }
+            }); // Ajax Call      
+    }
+
+    //LinkStart button click
+    $('#LinkStart').on ('click', function () {
+           start_process("link", $("#LinkTextBox").val());
+    });
+    //Link stop button clicked
+    $('#LinkStop').on ('click', function () {
+        stop_process("link", null);       
+    });
+
+    //ServerStart button click
+    $('#ServerStart').on ('click', function () {
+           start_process("server", $("#ServerTextBox").val());
+    });
+
+    $('#ServerStop').on ('click', function () {
+        stop_process("server", null);       
+    });
+
+    //AppServerStart button click
+    $('#AppServerStart').on ('click', function () {
+           start_process("app_server", $("#AppServerTextBox").val());
+    });
+    //AppServerStop button clicked.
+    $('#AppServerStop').on ('click', function () {
+        stop_process("app_server", null);       
+    });
+
+
+    //Check status of running agents.. 
+    function CheckStatus() {
+        $.ajax({
+            type: "POST",
+            url: BaseUri + "/pprzrest/api/v1.0/status",
+            data: {
+                agent:"server",
+                inputvar: $("#LinkTextBox").val()
+                },
+            success: function(msg){
+                if (msg == "ok") {
+                    //$('#OnayModal').modal('show');
+                }
+                        
+                }
+            }); // Ajax Call     
+    }
+
+    window.setInterval(function(){
+      //CheckStatus();
+    }, 5000);
+
+    
+
+
+
+    }); //end of main document.ready function
+    </script>
+
+</body>
+
+</html>
+
